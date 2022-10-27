@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sign in</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        form {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+<form name="signForm" action="" method="post">
+    <table style="margin: auto">
+        <thead>
+        <tr height="100">
+            <th colspan="2">SIGN IN</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><label for="id">id : </label></td>
+            <td><input type="text" id="id" name="id"/></td>
+        </tr>
+        <tr>
+            <td><label for="pwd">password : </label></td>
+            <td><input type="password" id="pwd" name="pwd"/></td>
+        </tr>
+        <tr height="50">
+            <td colspan="2" style="text-align:center">
+                <button type="button" onclick="signIn()">sign in</button>
+                <button type="button" onclick="signUp()">sign up</button>
+            </td>
+        </tr>
+        <tr th:if="${session.msg != null && session.msg != ''}">
+            <td colspan="2" style="text-align: center">
+                <span th:text="${session.msg}"></span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+<script>
+    function signIn() {
+        let signForm = document.querySelector("form[name=signForm]")
+        signForm.action = "/auth/sign-in";
+        signForm.submit();
+    }
+
+    function signUp() {
+        window.location.href = "/sign-up";
+    }
+
+    window.onload = function () {
+        let signForm = document.querySelector("form[name=signForm]")
+        signForm.pwd.addEventListener("keydown", function (e) {
+            if (e.key === "Enter") {
+                signIn();
+            }
+        })
+    }
+</script>
+</body>
+</html>

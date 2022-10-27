@@ -1,0 +1,13 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.AuditDAO">
+    <select id="getAuditAll" parameterType="AuditDTO" resultType="AuditDTO">
+        SELECT *
+        FROM AUDIT
+    </select>
+    <insert id="insertAudit" parameterType="AuditDTO">
+        INSERT INTO AUDIT(id, role)
+        VALUES (#{id}, #{role});
+    </insert>
+</mapper>
