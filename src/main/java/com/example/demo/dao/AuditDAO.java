@@ -1,13 +1,13 @@
 package com.example.demo.dao;
 
-import com.example.demo.dto.AuditDTO;
-import org.springframework.stereotype.Repository;
+import com.example.demo.dto.Audit;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-@Repository
+@Mapper
 public interface AuditDAO {
-    public int insertAudit(AuditDTO dto);
+    public int insertAudit(Audit audit);
 
-    public List<AuditDTO> getAuditAll();
+    public List<Audit> selectAuditList(Audit audit);
 }

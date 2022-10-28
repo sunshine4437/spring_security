@@ -1,12 +1,12 @@
 package com.example.demo.service;
 
 
-import com.example.demo.dto.AuditDTO;
+import com.example.demo.dto.Audit;
 
 import java.util.List;
 
 public interface AuditService {
-    public int insertAudit(AuditDTO auditDTO);
+    public int insertAudit(Audit auditDTO);
 
-    public List<AuditDTO> getAuditAll(AuditDTO auditDTO);
+    public List<Audit> selectAuditAll(Audit auditDTO);
 }

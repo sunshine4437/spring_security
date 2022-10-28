@@ -1,10 +1,14 @@
 package com.example.demo.dao;
 
-import com.example.demo.security.CustomUserDetails;
-import org.springframework.stereotype.Repository;
+import com.example.demo.dto.User;
+import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 //@Mapper
-@Repository
+@Mapper
 public interface UserDAO {
-    public CustomUserDetails getUserById(String id);
+    public int insertUser(User user);
+
+    public List<User> selectUserList(User user);
 }

@@ -1,21 +1,36 @@
--- demodb.test_table definition
-
-CREATE TABLE `test_table`
+-- DEMODB.TEST_TABLE DEFINITION
+CREATE TABLE `AUDIT`
 (
-    `id`       varchar(20) NOT NULL,
-    `name`     varchar(20) NOT NULL,
-    `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-    `auth`     varchar(100)                                                  DEFAULT NULL,
-    `enable`   tinyint(1)                                                    DEFAULT NULL,
-    PRIMARY KEY (`id`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_0900_ai_ci;
-
-create table audit
-(
-    `id`   varchar(50) not null,
-    `role` varchar(50) not null,
-    `date` datetime(6) default CURRENT_TIMESTAMP(6),
-    constraint audit_group_pk primary key (id, date)
+    `IDX`  INT         NOT NULL AUTO_INCREMENT,
+    `USER_ID`   VARCHAR(50) NOT NULL,
+    `DATE` DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3),
+    CONSTRAINT AUDIT_PK PRIMARY KEY (IDX)
 );
+
+CREATE TABLE `USER`
+(
+    `USER_ID`       VARCHAR(50) NOT NULL,
+    `USER_NAME`     VARCHAR(50) NOT NULL,
+    `USER_PASSWORD` VARCHAR(50) CHARACTER SET UTF8MB4 COLLATE UTF8MB4_0900_AI_CI DEFAULT NULL,
+    CONSTRAINT USER_PK PRIMARY KEY (`USER_ID`)
+) ENGINE = INNODB
+  DEFAULT CHARSET = UTF8MB4
+  COLLATE = UTF8MB4_0900_AI_CI;
+
+CREATE TABLE `ROLE`
+(
+    `ROLE` VARCHAR(50) NOT NULL,
+    `ROLE_NAME` VARCHAR(50) NOT NULL,
+    CONSTRAINT ROLE_PK PRIMARY KEY (ROLE)
+);
+
+CREATE TABLE `USER_ROLE`
+(
+    `USER_ID`   VARCHAR(50) NOT NULL,
+    `ROLE` VARCHAR(50) NOT NULL,
+    CONSTRAINT USER_ROLE_PK PRIMARY KEY (USER_ID, ROLE),
+    FOREIGN KEY (USER_ID) REFERENCES `USER` (USER_ID) ON UPDATE CASCADE,
+    FOREIGN KEY (ROLE) REFERENCES `ROLE` (ROLE) ON UPDATE CASCADE
+);
+
+INSERT INTO `ROLE` (ROLE, ROLE_NAME) VALUES ('ROLE_ADMIN', 'ADMIN');

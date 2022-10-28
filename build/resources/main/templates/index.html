@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+<div>
+    <h1>Index page</h1>
+    <span>welcome : </span><span th:text="${#request.getSession().getAttribute('msg')}"></span>
+    <button onclick="location.href='/sign-out'">sign out</button>
+</div>
+</body>
+</html>

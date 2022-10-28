@@ -56,6 +56,7 @@ public class SpringSecurityConfig {
                 .authorizeHttpRequests()
 //                .antMatchers("/sign-in", "/sign-up").permitAll()
                 .antMatchers("/", "/index", "/test").hasRole("ADMIN")
+                .antMatchers("/static/**").permitAll()
                 .anyRequest().permitAll();
 //                .antMatchers().authenticated()
         httpSecurity
@@ -82,10 +83,10 @@ public class SpringSecurityConfig {
         return httpSecurity.build();
     }
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().antMatchers("/static/**");
-    }
+//    @Bean
+//    public WebSecurityCustomizer webSecurityCustomizer() {
+//        return (web) -> web.ignoring().antMatchers("/static/**");
+//    }
 
 
 }

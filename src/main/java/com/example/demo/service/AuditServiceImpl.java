@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dao.AuditDAO;
-import com.example.demo.dto.AuditDTO;
+import com.example.demo.dto.Audit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +18,12 @@ public class AuditServiceImpl implements AuditService {
     }
 
     @Override
-    public int insertAudit(AuditDTO auditDTO) {
+    public int insertAudit(Audit auditDTO) {
         return this.auditDAO.insertAudit(auditDTO);
     }
 
     @Override
-    public List<AuditDTO> getAuditAll(AuditDTO auditDTO) {
+    public List<Audit> selectAuditAll(Audit auditDTO) {
         return null;
     }
 }

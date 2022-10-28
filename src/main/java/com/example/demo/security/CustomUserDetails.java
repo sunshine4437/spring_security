@@ -1,5 +1,6 @@
 package com.example.demo.security;
 
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,29 +8,28 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 
-
+@AllArgsConstructor
 public class CustomUserDetails implements UserDetails {
-    private String id;
-    private String password;
-    private String name;
-    private String auth;
-    private int enable;
+    private String userId;
+    private String userPassword;
+    private String userName;
+    private String role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        ArrayList<GrantedAuthority> authList = new ArrayList<>();
-        authList.add(new SimpleGrantedAuthority(auth));
-        return authList;
+        ArrayList<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(role));
+        return authorities;
     }
 
     @Override
     public String getPassword() {
-        return this.password;
+        return this.userPassword;
     }
 
     @Override
     public String getUsername() {
-        return this.id;
+        return this.userId;
     }
 
 
