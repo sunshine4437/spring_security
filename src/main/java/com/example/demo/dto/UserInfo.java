@@ -5,11 +5,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
-@NoArgsConstructor
+import java.sql.Date;
+
+
 @Getter
 @Setter
-public class UserRole {
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserInfo {
     private String userId;
-    private String role;
+    private String userName;
+    private String userPassword;
+    private String userRole;
 }

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<th:block th:fragment="header">
+    <div>header
+        <span sec:authentication="name"></span>
+        <span sec:authentication="principal.authorities"></span>
+        <button onclick="location.href='/sign-out'">sign out</button>
+    </div>
+</th:block>
+</html>

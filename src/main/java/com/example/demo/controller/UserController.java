@@ -1,14 +1,12 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.Role;
-import com.example.demo.dto.User;
-import com.example.demo.dto.UserRole;
+import com.example.demo.dto.UserInfo;
 import com.example.demo.service.UserService;
-import com.example.demo.service.UserServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 //@RequestMapping(value = "/")
@@ -30,8 +29,8 @@ public class UserController {
     private final UserService userService;
 
     @Autowired
-    public UserController(@Qualifier("userServiceImpl") UserServiceImpl userServiceImpl) {
-        this.userService = userServiceImpl;
+    public UserController(@Qualifier("userService") UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping(value = "/index")
@@ -46,8 +45,9 @@ public class UserController {
 
     @GetMapping(value = "/sign-up")
     public String signUp(Model model) {
-        if (this.userService.getUserList(null).size() == 0) {
-            model.addAttribute("msg", "Register administrator account");
+        List<UserInfo> list = this.userService.getUsers(null);
+        if (list.size() == 0) {
+            model.addAttribute("msg", "관리자 계정 등록");
         }
         return "auth/sign-up";
     }
@@ -60,15 +60,7 @@ public class UserController {
 
     @PostMapping(value = "/user")
     @ResponseBody
-    @Transactional
-    public String registerUser(@RequestBody User user) {
-        user.setUserPassword(new BCryptPasswordEncoder().encode(user.getUserPassword()));
-
-        if (this.userService.getUserList(null).size() == 0) {
-            Role adminRole = this.userService.getAdminRole();
-            UserRole userRole = new UserRole(user.getUserId(), adminRole.getRole());
-            this.userService.addUser(user, userRole);
-        }
-        return "";
+    public String registerUser(@RequestBody UserInfo user) {
+        return this.userService.registerUser(user);
     }
 }

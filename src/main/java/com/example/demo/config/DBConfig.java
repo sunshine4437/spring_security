@@ -39,7 +39,7 @@ public class DBConfig {
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         bean.setDataSource(dataSource);
 //        bean.setConfigLocation(resolver.getResource("classpath:mybatis/mybatis-config.xml"));
-        bean.setMapperLocations(resolver.getResources("classpath:mybatis/mapper/*.xml"));
+        bean.setMapperLocations(resolver.getResources("classpath:mybatis/mapper/**/*.xml"));
         bean.setTypeAliasesPackage("com.example.demo");
 
         Properties properties = new Properties();

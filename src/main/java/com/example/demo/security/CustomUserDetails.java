@@ -12,8 +12,8 @@ import java.util.Collection;
 public class CustomUserDetails implements UserDetails {
     private String userId;
     private String userPassword;
-    private String userName;
     private String role;
+    private int enable;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -50,7 +50,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-//        return this.enable == 1;
-        return true;
+        return this.enable == 1;
+//        return true;
     }
 }

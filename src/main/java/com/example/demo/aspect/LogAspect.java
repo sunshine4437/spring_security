@@ -1,7 +1,6 @@
 package com.example.demo.aspect;
 
 import com.example.demo.dto.Audit;
-import com.example.demo.service.AuditServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
@@ -16,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class LogAspect {
     private final Logger logger = LogManager.getLogger(LogAspect.class);
-
+/*
     private final AuditServiceImpl auditService;
 
     @Autowired
@@ -52,6 +51,6 @@ public class LogAspect {
 //        AuditDTO auditDTO = (AuditDTO) joinPoint.getArgs()[0];
 //        logger.info(auditDTO.getId() + " " + auditDTO.getRole() + " " + auditDTO.getDate());
         return obj;
-    }
+    }*/
 
 }

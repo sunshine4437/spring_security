@@ -5,12 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-public class User {
-    private String userId;
-    private String userName;
-    private String userPassword;
+@NoArgsConstructor
+@AllArgsConstructor
+public class RoleInfo {
+    private String role;
+    private String roleName;
 }

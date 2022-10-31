@@ -56,7 +56,9 @@
         </tr>
         <tr>
             <td colspan="2" style="text-align: center">
+                <button type="button" onclick="location.href='/sign-in'">sign in</button>
                 <button type="button" onclick="signUp()">sign up</button>
+
             </td>
         </tr>
 
@@ -71,7 +73,18 @@
             userId: signForm.querySelector("#id").value,
             userPassword: signForm.querySelector("#pwd").value,
             userName: signForm.querySelector("#name").value
+        }).then(res => {
+            res.data == null ? success() : fail(res.data);
         })
+    }
+
+    function success() {
+        alert("계정 등록 성공");
+        location.href = '/sign-in';
+    }
+
+    function fail(data) {
+        alert(data)
     }
 </script>
 </body>
